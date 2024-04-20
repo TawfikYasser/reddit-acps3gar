@@ -1,0 +1,40 @@
+[2024-04-20T16:17:46.442+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:17:44.430549+00:00 [queued]>
+[2024-04-20T16:17:46.450+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:17:44.430549+00:00 [queued]>
+[2024-04-20T16:17:46.451+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-04-20T16:17:46.465+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): reddit_extraction> on 2024-04-20 16:17:44.430549+00:00
+[2024-04-20T16:17:46.472+0000] {standard_task_runner.py:57} INFO - Started process 85 to run task
+[2024-04-20T16:17:46.477+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'etl_reddit_pipeline', 'reddit_extraction', 'manual__2024-04-20T16:17:44.430549+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/reddit_dag.py', '--cfg-path', '/tmp/tmp4qkdc5om']
+[2024-04-20T16:17:46.480+0000] {standard_task_runner.py:85} INFO - Job 15: Subtask reddit_extraction
+[2024-04-20T16:17:46.526+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:17:44.430549+00:00 [running]> on host a5ce8015e481
+[2024-04-20T16:17:46.613+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Tawfik Yasser' AIRFLOW_CTX_DAG_ID='etl_reddit_pipeline' AIRFLOW_CTX_TASK_ID='reddit_extraction' AIRFLOW_CTX_EXECUTION_DATE='2024-04-20T16:17:44.430549+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-20T16:17:44.430549+00:00'
+[2024-04-20T16:17:47.222+0000] {logging_mixin.py:151} INFO - Number of posts = 50070
+[2024-04-20T16:17:47.224+0000] {logging_mixin.py:151} INFO - title         object
+score          int64
+id            object
+url           object
+comms_num      int64
+created      float64
+body          object
+timestamp     object
+dtype: object
+[2024-04-20T16:17:47.304+0000] {logging_mixin.py:151} INFO - title                object
+score                 int64
+id                   object
+url                  object
+comms_num             int64
+body                 object
+timestamp    datetime64[ns]
+dtype: object
+[2024-04-20T16:17:47.317+0000] {logging_mixin.py:151} INFO -                                                title  ...           timestamp
+0  It's not about the money, it's about sending a...  ... 2021-01-28 21:37:41
+1  Math Professor Scott Steiner says the numbers ...  ... 2021-01-28 21:32:10
+2                                    Exit the system  ... 2021-01-28 21:30:35
+3  NEW SEC FILING FOR GME! CAN SOMEONE LESS RETAR...  ... 2021-01-28 21:28:57
+4  Not to distract from GME, just thought our AMC...  ... 2021-01-28 21:26:56
+
+[5 rows x 7 columns]
+[2024-04-20T16:17:47.317+0000] {logging_mixin.py:151} INFO - 50070
+[2024-04-20T16:17:47.330+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-04-20T16:17:47.338+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=etl_reddit_pipeline, task_id=reddit_extraction, execution_date=20240420T161744, start_date=20240420T161746, end_date=20240420T161747
+[2024-04-20T16:17:47.371+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-04-20T16:17:47.388+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

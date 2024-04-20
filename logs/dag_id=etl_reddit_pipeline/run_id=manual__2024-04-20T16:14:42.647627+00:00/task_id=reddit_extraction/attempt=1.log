@@ -1,0 +1,50 @@
+[2024-04-20T16:14:44.551+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:14:42.647627+00:00 [queued]>
+[2024-04-20T16:14:44.566+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:14:42.647627+00:00 [queued]>
+[2024-04-20T16:14:44.566+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-04-20T16:14:44.591+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): reddit_extraction> on 2024-04-20 16:14:42.647627+00:00
+[2024-04-20T16:14:44.602+0000] {standard_task_runner.py:57} INFO - Started process 73 to run task
+[2024-04-20T16:14:44.605+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'etl_reddit_pipeline', 'reddit_extraction', 'manual__2024-04-20T16:14:42.647627+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/reddit_dag.py', '--cfg-path', '/tmp/tmp3ootwwxb']
+[2024-04-20T16:14:44.610+0000] {standard_task_runner.py:85} INFO - Job 11: Subtask reddit_extraction
+[2024-04-20T16:14:44.670+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_reddit_pipeline.reddit_extraction manual__2024-04-20T16:14:42.647627+00:00 [running]> on host a5ce8015e481
+[2024-04-20T16:14:44.781+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Tawfik Yasser' AIRFLOW_CTX_DAG_ID='etl_reddit_pipeline' AIRFLOW_CTX_TASK_ID='reddit_extraction' AIRFLOW_CTX_EXECUTION_DATE='2024-04-20T16:14:42.647627+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-20T16:14:42.647627+00:00'
+[2024-04-20T16:14:45.394+0000] {logging_mixin.py:151} INFO - Number of posts = 50070
+[2024-04-20T16:14:45.395+0000] {logging_mixin.py:151} INFO - title         object
+score          int64
+id            object
+url           object
+comms_num      int64
+created      float64
+body          object
+timestamp     object
+dtype: object
+[2024-04-20T16:14:45.408+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "tslib.pyx", line 305, in pandas._libs.tslib.array_with_unit_to_datetime
+ValueError: could not convert string to float: '2021-01-28 21:37:41'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/pipelines/reddit_pipeline.py", line 27, in reddit_pipeline
+    transformed_data = transform_posts(reddit_posts_df)
+  File "/opt/airflow/etls/reddit_etl.py", line 14, in transform_posts
+    post_df['timestamp'] = pd.to_datetime(post_df['timestamp'], unit='s')
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/tools/datetimes.py", line 1108, in to_datetime
+    cache_array = _maybe_cache(arg, format, cache, convert_listlike)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/tools/datetimes.py", line 254, in _maybe_cache
+    cache_dates = convert_listlike(unique_dates, format)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/tools/datetimes.py", line 462, in _convert_listlike_datetimes
+    return _to_datetime_with_unit(arg, unit, name, utc, errors)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/tools/datetimes.py", line 574, in _to_datetime_with_unit
+    arr, tz_parsed = tslib.array_with_unit_to_datetime(arg, unit, errors=errors)
+  File "tslib.pyx", line 333, in pandas._libs.tslib.array_with_unit_to_datetime
+  File "tslib.pyx", line 307, in pandas._libs.tslib.array_with_unit_to_datetime
+ValueError: non convertible value 2021-01-28 21:37:41 with the unit 's', at position 0
+[2024-04-20T16:14:45.418+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=etl_reddit_pipeline, task_id=reddit_extraction, execution_date=20240420T161442, start_date=20240420T161444, end_date=20240420T161445
+[2024-04-20T16:14:45.429+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 11 for task reddit_extraction (non convertible value 2021-01-28 21:37:41 with the unit 's', at position 0; 73)
+[2024-04-20T16:14:45.466+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-04-20T16:14:45.482+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check
